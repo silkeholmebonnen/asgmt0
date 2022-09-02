@@ -1,6 +1,6 @@
 ﻿using System;
+namespace Asgmt;
 
-namespace Assignment0._2;
 public class Program {
     public static void Main(string[] args) {
 
