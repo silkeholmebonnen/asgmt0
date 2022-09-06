@@ -75,4 +75,54 @@ public class UnitTest1
 
         result.Should().Be("nay");
     }
+
+    [Fact]
+    public void error_input_not_int()
+    {
+        var sut = new Program();
+
+        var result = sut.isErrorFree("hello");
+
+        result.Should().Be(false);
+    }
+
+    [Fact]
+    public void error_input_invalid_number()
+    {
+        var sut = new Program();
+
+        var result = sut.isErrorFree("8");
+
+        result.Should().Be(false);
+    }
+
+    [Fact]
+    public void error_input_without_error()
+    {
+        var sut = new Program();
+
+        var result = sut.isErrorFree("2000");
+
+        result.Should().Be(true);
+    }
+
+    [Fact]
+    public void error_message_for_not_a_number()
+    {
+        var sut = new Program();
+
+        var result = sut.errorMessage("hello");
+
+        result.Should().Be("The input is not a number");
+    }
+
+    [Fact]
+    public void error_message_for_number_too_low()
+    {
+        var sut = new Program();
+
+        var result = sut.errorMessage("13");
+
+        result.Should().Be("The input is lower than 1582");
+    }
 }

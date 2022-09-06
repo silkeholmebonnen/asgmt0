@@ -6,10 +6,15 @@ public class Program {
 
         var program = new Program();
         var input = Console.ReadLine();
-        var year = Int32.Parse(input);
-        var leapYear = program.IsLeapYear(year);
-        var yayornay = program.yayOrNay(leapYear);
-        Console.WriteLine(yayornay);
+        if (program.isErrorFree(input)) {
+            var year = Int32.Parse(input);
+            var leapYear = program.IsLeapYear(year);
+            var yayornay = program.yayOrNay(leapYear);
+            Console.WriteLine(yayornay);
+        }
+        else {
+            Console.WriteLine(program.errorMessage(input));
+        }
     }
 
     public bool IsLeapYear(int year) {
@@ -27,4 +32,29 @@ public class Program {
         if (ans == true) return "yay";
         else return "nay";
     }
+
+    public bool isErrorFree(string input) {
+        try {
+            var year = Int32.Parse(input);
+            if (year < 1582) return false;
+            return true;
+        }
+        catch (Exception) {
+            return false;
+        }
+    }
+
+    public string errorMessage(string input) {
+        try {
+            var year = Int32.Parse(input);
+            if (year < 1582) return "The input is lower than 1582";
+            return "There is some error";
+        }
+        catch (FormatException) {
+            return "The input is not a number";
+        }
+         catch (OverflowException) {
+            return "Overflow";
+        }
+    } 
 }
